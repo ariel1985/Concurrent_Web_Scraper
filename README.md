@@ -15,7 +15,15 @@ Build a web scraper that can fetch data from multiple websites concurrently, pro
 - BeautifulSoup4
 
 ## Usage
-1. Install dependencies:
+1. Set up a virtual environment using `venv`:
+
+   ```
+   python -m venv myenv
+   source myenv/bin/activate
+   ```
+
+2. Install dependencies:
+
    ```
    pip install -r requirements.txt
    ```
@@ -24,7 +32,7 @@ Build a web scraper that can fetch data from multiple websites concurrently, pro
    pip install aiohttp beautifulsoup4
    ```
 
-2. Run the scraper using the command line:
+3. Run the scraper using the command line:
    ```
    python cli.py https://example.com https://example.org
    ```
