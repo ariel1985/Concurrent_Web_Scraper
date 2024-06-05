@@ -8,5 +8,5 @@ def save_to_json(data):
     # add current datetime to filename format 'data_YYYY-MM-DD-HH-MM-SS.json'
     filename = f'{filepath}data_{datetime.now().strftime("%Y-%m-%d-%H-%M-%S")}.json'
     
-    with open(filename, 'w') as f:
+    with open(filename, 'w', encoding="utf-8") as f:
         json.dump(data, f, indent=4)
