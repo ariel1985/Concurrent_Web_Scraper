@@ -105,4 +105,8 @@ dmypy.json
 # VSCode
 .vscode/
 
+# Relevant to this project only
+
 data.json
+data_*.json
+# scraped_data/*
