@@ -1,6 +1,6 @@
 import asyncio
-import aiohttp
 import logging
+import aiohttp
 from bs4 import BeautifulSoup
 
 logging.basicConfig(filename='scraper.log', level=logging.INFO)
@@ -10,8 +10,14 @@ async def fetch(url, session):
         async with session.get(url) as response:
             response.raise_for_status()
             return await response.text()
+    except aiohttp.ClientResponseError as e:
+        logging.error(f"Error with the response from {url}: {e}")
+        return None
+    except aiohttp.ClientConnectionError as e:
+        logging.error(f"Error connecting to {url}: {e}")
+        return None
     except Exception as e:
-        logging.error(f"Error fetching {url}: {e}")
+        logging.error(f"Unexpected error fetching {url}: {e}")
         return None
 
 async def scrape(urls):

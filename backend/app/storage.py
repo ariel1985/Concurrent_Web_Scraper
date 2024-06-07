@@ -9,10 +9,10 @@ class Storage:
         self.filename = filename
         
     def save_to_csv(self, data: List[ParsedData]):
-        """_summary_
+        """Save the data to a CSV file.
 
         Args:
-            data (List[ParsedData]): _description_
+            data (List[ParsedData]): List of ParsedData objects
         """
         with open(self.filename, 'a', newline='') as csvfile:
             fieldnames = ['url', 'scraped_at', 'datatype', 'data']
@@ -26,6 +26,11 @@ class Storage:
                 writer.writerow(item.model_dump())
 
     def load_from_csv(self) -> List[ParsedData]:
+        """Load the data from a CSV file.
+
+        Returns:
+            List[ParsedData]: List of ParsedData objects
+        """
         data = []
         with open(self.filename, 'r', newline='') as csvfile:
             reader = csv.DictReader(csvfile)
