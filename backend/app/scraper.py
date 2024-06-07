@@ -16,12 +16,9 @@ async def scrape(urls):
         return await asyncio.gather(*tasks)
 
 if __name__ == "__main__":
-    urls = ["https://chat4u.store", "https://example.org", "https://example.com", "https://www.tase.co.il/en"]
+    urls = ["https://example.com", "https://example.org"]
     html_contents = asyncio.run(scrape(urls))
     for content in html_contents:
         if content:
             soup = BeautifulSoup(content, 'html.parser')
             print(soup.title.string)
-        else:
-            print("No content")
-                  
