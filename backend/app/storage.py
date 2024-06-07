@@ -16,3 +16,4 @@ def save_to_json(data):
 def load_from_json(filename='data.json'):
     with open(filename, 'r') as f:
         return json.load(f)
+

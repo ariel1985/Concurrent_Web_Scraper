@@ -110,3 +110,6 @@ dmypy.json
 data.json
 data_*.json
 # scraped_data/*
+
+data.csv
+app/data.csv
