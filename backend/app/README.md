@@ -4,19 +4,17 @@
 Build a web scraper that can fetch data from multiple websites concurrently, process the data, and store it in a structured format.
 
 ## Project Structure
-<<<<<<< Updated upstream
 - `scraper.py`: Contains functions to perform asynchronous web scraping.
 - `data_processing.py`: Functions to parse HTML content.
 - `storage.py`: Functions to save data in JSON format.
 - `cli.py`: Command-line interface to input URLs and scrape data.
-=======
+- `api.py`: Contains the API code to fetch data from the backend.
 
 - `frontend/`: Contains the frontend code for the web interface.
 - `backend/`: Contains the backend code for web scraping and data processing.
 - `tests/`: Contains unit tests for the backend and API code.
 
 ** Concider creating a storage folder to store the scraped data in root folder.
->>>>>>> Stashed changes
 
 ## Requirements
 - Python 3.7+

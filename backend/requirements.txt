@@ -1,2 +1,4 @@
-aiohttp 
+aiohttp
 beautifulsoup4
+fastapi
+uvicorn
