@@ -4,42 +4,28 @@
 Build a web scraper that can fetch data from multiple websites concurrently, process the data, and store it in a structured format.
 
 ## Project Structure
-- `scraper.py`: Contains functions to perform asynchronous web scraping.
-- `data_processing.py`: Functions to parse HTML content.
-- `storage.py`: Functions to save data in JSON format.
+- `backend/app/`: Core functionality of the web scraper.
+- `backend/app/scraper.py`: Contains functions to perform asynchronous web scraping.
+- `backend/app/data_processing.py`: Functions to parse HTML content into Pydantic models.
+- `backend/app/storage.py`: Class to save and load data in CSV format using Pydantic models.
+- `backend/app/config.py`: Configuration management using Pydantic settings.
+- `backend/app/api.py`: FastAPI application to serve the scraped data.
+- `backend/tests/`: Unit tests for the project.
 - `cli.py`: Command-line interface to input URLs and scrape data.
-- `api.py`: Contains the API code to fetch data from the backend.
-
-- `frontend/`: Contains the frontend code for the web interface.
-- `backend/`: Contains the backend code for web scraping and data processing.
-- `tests/`: Contains unit tests for the backend and API code.
-
-** Concider creating a storage folder to store the scraped data in root folder.
+- `requirements.txt`: List of dependencies.
+- `README.md`: Project documentation.
 
 ## Requirements
 - Python 3.7+
 - aiohttp
 - BeautifulSoup4
+- FastAPI
+- Pydantic
+- Uvicorn
+- Pytest
 
-## Usage
-1. Set up a virtual environment using `venv`:
-
-   ```
-   python -m venv myenv
-   source myenv/bin/activate
-   ```
-
-2. Install dependencies:
-
-   ```
-   pip install -r requirements.txt
-   ```
-   or
-   ```
-   pip install aiohttp beautifulsoup4
-   ```
-
-3. Run the scraper using the command line:
-   ```
-   python cli.py https://example.com https://example.org
-   ```
+## Setup
+1. Create and activate a virtual environment:
+   ```bash
+   python -m venv venv
+   source venv/bin/activate  # On Windows use `venv\\Scripts\\activate`
