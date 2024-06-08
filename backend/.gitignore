@@ -111,4 +111,5 @@ data.json
 data_*.json
 # scraped_data/*
 
-backend/data.csv
+data.csv
+app/data.csv
