@@ -1,17 +1,10 @@
 <template>
-  <q-page class="flex flex-center">
-    <img
-      alt="Quasar logo"
-      src="~assets/quasar-logo-vertical.svg"
-      style="width: 200px; height: 200px"
-    >
+  <q-page class="flex q-ma-sm">
+    <h1 class="text-h3 q-pa-sm">Scraped Data</h1>
+    <DataTable />
   </q-page>
 </template>
 
-<script>
-import { defineComponent } from 'vue'
-
-export default defineComponent({
-  name: 'IndexPage'
-})
+<script setup>
+import DataTable from 'components/DataTable.vue'
 </script>

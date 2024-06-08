@@ -37,9 +37,11 @@ Build a web scraper that can fetch data from multiple websites concurrently, pro
 
 3. Run the FastAPI application using Uvicorn:
     ```bash
+    cd backend
     uvicorn app.api:app --reload
     ```
     The API will be available at `http://localhost:8000`.
+    To view the API documentation, go to `http://localhost:8000/docs`.
 
 4. Run the scraper using the command line:
     ```bash

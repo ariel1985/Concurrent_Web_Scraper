@@ -1,9 +1,24 @@
 const routes = [
   {
+    name: 'home',
     path: '/',
     component: () => import('layouts/MainLayout.vue'),
     children: [
-      { path: '', component: () => import('pages/IndexPage.vue') }
+      {
+        name: 'index',
+        path: '',
+        component: () => import('pages/IndexPage.vue')
+      },
+      {
+        name: 'urls',
+        path: 'urls',
+        component: () => import('pages/LinksPage.vue')
+      },
+      {
+        name: 'settings',
+        path: 'settings',
+        component: () => import('pages/SettingsPage.vue')
+      }
     ]
   },
 

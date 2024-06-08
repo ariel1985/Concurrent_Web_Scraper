@@ -19,31 +19,30 @@
   </q-item>
 </template>
 
-<script>
-import { defineComponent } from 'vue'
+<script setup>
+import { defineProps, toRefs } from 'vue'
 
-export default defineComponent({
-  name: 'EssentialLink',
-  props: {
-    title: {
-      type: String,
-      required: true
-    },
+const props = defineProps({
+  title: {
+    type: String,
+    required: true
+  },
 
-    caption: {
-      type: String,
-      default: ''
-    },
+  caption: {
+    type: String,
+    default: ''
+  },
 
-    link: {
-      type: String,
-      default: '#'
-    },
+  link: {
+    type: String,
+    default: '#'
+  },
 
-    icon: {
-      type: String,
-      default: ''
-    }
+  icon: {
+    type: String,
+    default: ''
   }
 })
+
+const { title, caption, link, icon } = toRefs(props)
 </script>
