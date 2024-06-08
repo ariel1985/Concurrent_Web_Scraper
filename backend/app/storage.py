@@ -1,41 +1,57 @@
-import csv
 from datetime import datetime
 from typing import List
-from .config import settings
-from .data_processing import ParsedData
+from pydantic import BaseModel
+import pandas as pd
 
-class Storage:
-    def __init__(self, filename=settings.data_file):
+# Pydantic models for validation and serialization
+class DataItem(BaseModel):
+    url: str
+    scraped_at: datetime
+    datatype: str
+    data: str
+
+class LinkItem(BaseModel):
+    link: str
+
+# Storage class for Data
+class DataStorage:
+    def __init__(self, filename: str = 'data.csv'):
         self.filename = filename
-        
-    def save_to_csv(self, data: List[ParsedData]):
-        """Save the data to a CSV file.
 
-        Args:
-            data (List[ParsedData]): List of ParsedData objects
-        """
-        with open(self.filename, 'a', newline='') as csvfile:
-            fieldnames = ['url', 'scraped_at', 'datatype', 'data']
-            writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+    def save_to_csv(self, data: List[DataItem]):
+        df = pd.DataFrame([item.model_dump() for item in data])
+        df.to_csv(self.filename, index=False)
 
-            # Only write the header if the file is empty
-            if csvfile.tell() == 0:
-                writer.writeheader()
+    def load_from_csv(self) -> List[DataItem]:
+        df = pd.read_csv(self.filename, parse_dates=['scraped_at'])
+        return [DataItem(**row) for _, row in df.iterrows()]
 
-            for item in data:
-                writer.writerow(item.model_dump())
+# Storage class for Links
+class LinkStorage:
+    def __init__(self, filename: str = 'links.csv'):
+        self.filename = filename
+    
+    def load_from_csv(self) -> List[str]:
+        df = pd.read_csv(self.filename)
+        return df.iloc[:, 0].tolist()
+    
+# Example Usage
+if __name__ == "__main__":
+    # Example data
+    data_items = [
+        DataItem(url="https://example.com", scraped_at=datetime.now(), datatype="example", data="Example data")
+    ]
 
-    def load_from_csv(self) -> List[ParsedData]:
-        """Load the data from a CSV file.
+    # Save data items to CSV
+    data_storage = DataStorage()
+    data_storage.save_to_csv(data_items)
 
-        Returns:
-            List[ParsedData]: List of ParsedData objects
-        """
-        data = []
-        with open(self.filename, 'r', newline='') as csvfile:
-            reader = csv.DictReader(csvfile)
-            for row in reader:
-                row['scraped_at'] = datetime.fromisoformat(row['scraped_at'])
-                item = ParsedData(**row)
-                data.append(item)
-        return data
+    # Load data items from CSV
+    loaded_data_items = data_storage.load_from_csv()
+    print(loaded_data_items)
+
+    # Load link items from CSV
+    link_storage = LinkStorage()
+    loaded_link_items = link_storage.load_from_csv()
+    print(loaded_link_items)
+
