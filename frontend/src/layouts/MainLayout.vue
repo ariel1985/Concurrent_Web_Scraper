@@ -59,15 +59,9 @@ const linksList = [
   },
   {
     title: 'URLs',
-    caption: 'Add/edit urls to scrape',
+    caption: 'View URLs to be scraped',
     icon: 'link',
     link: '/urls'
-  },
-  {
-    title: 'Settings',
-    caption: 'Add/edit scrape configurations',
-    icon: 'settings',
-    link: '/settings'
   }
 ]
 

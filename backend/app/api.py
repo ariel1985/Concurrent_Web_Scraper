@@ -1,8 +1,11 @@
-from fastapi import FastAPI
+from datetime import datetime
+from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-from .storage import Storage
+from .storage import DataStorage, LinkStorage
 
 app = FastAPI()
+data_storage = DataStorage()
+link_storage = LinkStorage()
 
 # Add CORS middleware
 origins = [
@@ -18,9 +21,12 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-storage = Storage()
-
 @app.get("/data")
 def read_data():
-    data = storage.load_from_csv()
+    data = data_storage.load_from_csv()
     return data
+
+@app.get("/links")
+def read_links():
+    links = link_storage.load_from_csv()
+    return links

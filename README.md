@@ -1,47 +1,30 @@
 # Concurrent Web Scraper
 
-## Objective
-Build a web scraper that can fetch data from multiple websites concurrently, process the data, and store it in a structured format.
+This project is a web scraper that fetches data from multiple websites concurrently, processes the data, and stores it in a structured format.
 
-## Project Structure
-<<<<<<< Updated upstream
-- `scraper.py`: Contains functions to perform asynchronous web scraping.
-- `data_processing.py`: Functions to parse HTML content.
-- `storage.py`: Functions to save data in JSON format.
-- `cli.py`: Command-line interface to input URLs and scrape data.
-=======
+## Prerequisites
 
-- `frontend/`: Contains the frontend code for the web interface.
-- `backend/`: Contains the backend code for web scraping and data processing.
-- `tests/`: Contains unit tests for the backend and API code.
+- Python 3.x
+- Node.js
+- npm
 
-** Concider creating a storage folder to store the scraped data in root folder.
->>>>>>> Stashed changes
+## Setup
 
-## Requirements
-- Python 3.7+
-- aiohttp
-- BeautifulSoup4
+### Backend
+
+1. Navigate to the `backend` directory.
+2. Install the Python dependencies by running `pip install -r requirements.txt`.
+3. Run the backend for API by executing `uvicorn app.api:app --reload`.
+
+### Frontend
+
+1. Navigate to the `frontend` directory.
+2. Install the Node.js dependencies by running `npm install`.
+3. Start the app in development mode by executing `quasar dev`.
 
 ## Usage
-1. Set up a virtual environment using `venv`:
 
-   ```
-   python -m venv myenv
-   source myenv/bin/activate
-   ```
+After setting up both the backend and frontend, you can start using the web scraper. The frontend will be accessible at `http://localhost:9000` (or the port specified in your `.env` file).
 
-2. Install dependencies:
+More information can be found in the respective `README.md` files in the `backend` and `frontend` directories.
 
-   ```
-   pip install -r requirements.txt
-   ```
-   or
-   ```
-   pip install aiohttp beautifulsoup4
-   ```
-
-3. Run the scraper using the command line:
-   ```
-   python cli.py https://example.com https://example.org
-   ```

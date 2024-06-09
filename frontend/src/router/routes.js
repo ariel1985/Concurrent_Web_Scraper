@@ -13,11 +13,6 @@ const routes = [
         name: 'urls',
         path: 'urls',
         component: () => import('pages/LinksPage.vue')
-      },
-      {
-        name: 'settings',
-        path: 'settings',
-        component: () => import('pages/SettingsPage.vue')
       }
     ]
   },

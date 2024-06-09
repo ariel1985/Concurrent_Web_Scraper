@@ -15,34 +15,29 @@ import axios from 'axios'
 
 // create variable data as ref to store the data from the API
 const data = ref([])
+let loading = true
 
 const columns = [
-  { name: 'url', label: 'URL', field: 'url', sortable: true },
-  { name: 'scraped_at', label: 'Scraped At', field: 'scraped_at', sortable: true },
-  { name: 'datatype', label: 'Data Type', field: 'datatype', sortable: true },
-  { name: 'data', label: 'Data', field: 'data', sortable: true }
+  { name: 'url', label: 'URL', field: 'url', sortable: true }
 ]
-
-let loading = true
 
 async function fetchData () {
   try {
     if (!import.meta.env.VITE_API_URL) {
       throw new Error('API URL is not defined')
     }
-    const url = import.meta.env.VITE_API_URL + '/data'
+    const url = import.meta.env.VITE_API_URL + '/links'
     const response = await axios.get(url)
 
     if (!response.data) {
       throw new Error('No data in the response')
     }
 
-    console.log('response:')
-    console.log(response)
-    data.value = response.data
+    // Map the data to the expected structure
+    data.value = response.data.map(item => ({ url: item }))
+    loading = false
   } catch (error) {
-    console.error('Error fetching data:', error.message)
-  } finally {
+    console.error(error)
     loading = false
   }
 }
